@@ -19,6 +19,7 @@ System.config({
     "bluebird": "npm:bluebird@2.10.2",
     "core-js": "npm:core-js@1.2.1",
     "isomorphic-fetch": "npm:isomorphic-fetch@2.1.1",
+    "rx": "npm:rx@4.0.6",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },
@@ -136,6 +137,10 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2",
       "stream-browserify": "npm:stream-browserify@1.0.0",
       "string_decoder": "npm:string_decoder@0.10.31"
+    },
+    "npm:rx@4.0.6": {
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "util": "github:jspm/nodelibs-util@0.1.0"
     },
     "npm:stream-browserify@1.0.0": {
       "events": "github:jspm/nodelibs-events@0.1.1",
