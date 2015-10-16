@@ -28,10 +28,46 @@ async function foo() {
     console.log(b);
 }
 
+function checkcodes(a, b) {
+    log(a);
+    let patt = new RegExp(b);
+    let res  = patt.test(a);
+    return res;
+}
+
 
 foo();
 
+let btnA = document.getElementById("btna");
+let btnB = document.getElementById("btnb");
+let box  = document.getElementById("thebox");
 
-let mousemove = _Rx.Observable.fromEvent(document,   'mousemove');
-let move      = mousemove.map(m => {return {x:m.pageX, y:m.pageY}});
-let printm    = move.subscribe(x => log(x));
+
+let seqence   = "AABBA";
+
+let btnAClicks = _Rx.Observable.fromEvent(btnA,   'click').map(x => "A");
+let btnBClicks = _Rx.Observable.fromEvent(btnB,   'click').map(x => "B");
+
+let clicks     = _Rx.Observable.merge(btnAClicks, btnBClicks);
+let add        = clicks.scan((acc, x) => {
+    acc.push(x);
+    setTimeout(()=>acc.shift(), 5000);
+    return acc;
+}, []);
+
+let check     = add.do((x)=> {
+    log("check");
+    let res = checkcodes(x.join(""), seqence);
+    setBox(res);
+});
+
+check.subscribe(x => {
+    log("subscribe");
+    log(x);
+});
+
+function setBox(x) {
+    if(x)  box.style.backgroundColor = "green";
+    if(!x) box.style.backgroundColor = "red";
+    //log(x)
+}
